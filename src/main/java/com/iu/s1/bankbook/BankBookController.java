@@ -28,11 +28,14 @@ public class BankBookController {
 		if(path.equals("bankbookList.do")) {
 			System.out.println("상품목록");
 			ArrayList<BankBookDTO> ar = bankBookDAO.getList();
+			
 			//for(초기식;조건식;증감식)
 			//for(모은타입명 변수명 :컬렉션참조변수명) - 향상된 for 문
 			for(BankBookDTO bankBookDTO:ar) {
 				System.out.println(bankBookDTO.getBookName());
 			}
+			
+			request.setAttribute("list", ar);
 			
 			RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/views/bankbook/bankbookList.jsp");
 			try {
@@ -56,6 +59,8 @@ public class BankBookController {
 			bankBookDTO =  bankBookDAO.getSelect(bankBookDTO);
 			
 			System.out.println(bankBookDTO.getBookName());
+			
+			request.setAttribute("dto", bankBookDTO);
 			
 			RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/views/bankbook/bankbookSelect.jsp");
 			try {
