@@ -10,19 +10,15 @@
 <body>
 	<h1>BankBook Select Page</h1>
 	
-	<%
-		//session
-		//application
-		//page
-		//pageContext.~~ 모든 내장객체 정보 있음
-		String num = request.getParameter("bookNumber");
-	 	Object obj = request.getAttribute("dto");
-	 	BankBookDTO bankBookDTO = (BankBookDTO)obj;
-	 	
-	%>
 	
-	<h3>num : <%= num %></h3>
-	<h3>Name : <%= bankBookDTO.getBookName() %></h3>
+	<h3>num : ${requestScope.dto.bookNumber}</h3>
+	<h3>Name : ${requestScope.dto.bookName} </h3>
+	
+	<h3>Count : ${requestScope.count}</h3>
+	<h3>Name : ${name}</h3>
+	
+	<h3>SE : ${sessionScope.se}</h3>
+	<h3>SE : ${se}</h3>
 	
 </body>
 </html>
