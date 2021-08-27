@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+* {
+	color: red;
+}
+
+h3 {
+	color: blue;
+}
+
+#t1 {
+	color: lime;
+}
+
+.c1 {
+	color: black;
+}
+
+h1 {
+	font-size: 100px;
+}
