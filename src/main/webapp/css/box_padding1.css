@@ -18,6 +18,8 @@
 	box-sizing: content-box;	
 	*/
 	
+	box-sizing: border-box;
+	padding: 100px;
 
 }
 
