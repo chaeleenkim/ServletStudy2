@@ -1,10 +1,23 @@
 package com.iu.s1.member;
 
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.connector.Response;
 
 public class MemberController {
+	private MemberService memberService;
 	
-	public void start(HttpServletRequest request) {
+	public MemberController() {
+		memberService = new MemberService();
+	}
+	
+	
+	public void start(HttpServletRequest request,  HttpServletResponse response) throws Exception {
 		System.out.println("MemberController 실행");
 		
 		String uri = request.getRequestURI();
@@ -18,9 +31,37 @@ public class MemberController {
 			System.out.println(value);
 			String value2 = request.getParameter("pw");
 			System.out.println(value2);
-			
+		
+/**--------------------------------- memberJoin -----------------------------------------*/	
 		}else if(path.equals("memberJoin.do")) {
 			System.out.println("회원가입 진행");
+			
+			String method = request.getMethod();
+			
+			if(method.equals("POST")) {
+				
+				int result = memberService.memberJoin(request, response);
+				
+				//회원가입 성공 - index, 실패 - 회원가입 폼
+				if(result>0) {
+					response.sendRedirect("../index.jsp");
+				}else {
+					response.sendRedirect("./memberJoin.do");
+				}
+				
+				
+			//GET 메서드	
+			}else {
+				RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/views/member/memberJoin.jsp");
+				
+				view.forward(request, response);
+				
+			}
+				
+			
+			
+			
+			
 		}else if(path.equals("memberPage.do")) {
 			System.out.println("myPage 진행");
 		}else {

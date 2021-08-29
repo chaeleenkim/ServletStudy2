@@ -53,7 +53,12 @@ public class FrontController extends HttpServlet {
 		System.out.println("path : "+ path);
 		
 		if(path.equals("/member")) {
-			memberController.start(request);
+			try {
+				memberController.start(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if(path.equals("/bankbook")) {
 			bankbookController.start(request,response);
 		}else {
